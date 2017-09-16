@@ -1,5 +1,8 @@
 ##! /bin/sh
 
+# run from crontab 
+# e.g.@reboot python /home/pi/MyScript.py &
+
 sleep 5
 /usr/local/bin/ngrok start --all \
   --config=/home/pi/.ngrok2/ngrok.yml \
