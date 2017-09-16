@@ -21,7 +21,7 @@ def TVMode( mode ):
     if mode == "TV" or mode == "V":
         hue.setLights("tv")
     elif mode == "dim" or mode == "dinner" or mode =="mild" or mode == "relax":
-        hue.setLights("mild")
+        hue.setLights("relax")
     elif mode == "bright":
         hue.setLights("bright")
     elif mode == "super bright":

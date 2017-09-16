@@ -6,7 +6,7 @@ import urllib2
 from flask import Flask
 from flask_ask import Ask, statement
 import sys
-
+import config
 
 class Lights:
     kitchenLights = [1, 2, 4, 7]
@@ -14,18 +14,17 @@ class Lights:
     diningRoomLights = [9, 10]
     lightModes = {
             'tv': [0, 30, 0, 10],
-            'mild': [60, 130, 150, 15],
+            'relax': [60, 130, 150, 15],
             'bright': [150, 200, 200, 20],
             'superbright': [255, 255, 255, 30],
     }
     hueBridge = None
 
     def setTable( self, trigger ):
-        iftttBase = "https://maker.ifttt.com/trigger/%s/with/key/bq9qMhMP4LmWQu0SwhNPgk"
-        urllib2.urlopen( iftttBase % ( trigger ) ).read()
+        urllib2.urlopen( config.iftttBase % ( trigger ) ).read()
 
     def connect(self ):
-        self.hueBridge = Bridge('192.168.40.156')
+        self.hueBridge = Bridge(config.hueBridgeIP)
         self.hueBridge.connect()
         self.hueBridge.get_api()
 
