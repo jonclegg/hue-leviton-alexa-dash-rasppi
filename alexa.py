@@ -17,15 +17,17 @@ def intro():
 
 @ask.intent("TVMode")
 def TVMode( mode ):
+    l = hue.Lights()
+    l.connect()
     print "mode: %s" % (mode)
     if mode == "TV" or mode == "V":
-        hue.setLights("tv")
+        l.setLights("tv")
     elif mode == "dim" or mode == "dinner" or mode =="mild" or mode == "relax":
-        hue.setLights("relax")
+        l.setLights("relax")
     elif mode == "bright":
-        hue.setLights("bright")
+        l.setLights("bright")
     elif mode == "super bright":
-        hue.setLights("superbright")
+        l.setLights("superbright")
     else:
         return statement("unknown mode")
 

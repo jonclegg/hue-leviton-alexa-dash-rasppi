@@ -37,10 +37,10 @@ class Lights:
                 self.hueBridge.set_light( light, 'bri', brightness)
 
     def setLights( self, mode ):
+        self.setTable( "table_%d" % ( self.lightModes[mode][3]) )
         self.setSection( self.livingRoomLights, self.lightModes[mode][0] )
         self.setSection( self.kitchenLights, self.lightModes[mode][1] )
         self.setSection( self.diningRoomLights, self.lightModes[mode][2] )
-        self.setTable( "table_%d" % ( self.lightModes[mode][3]) )
 
 
 def main():

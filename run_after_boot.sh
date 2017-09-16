@@ -9,6 +9,6 @@ sleep 5
   --log=stdout \
   > /home/pi/logs/ngrok.log &
 
-/usr/bin/python /home/pi/dev/hue.py > /home/pi/logs/hue.log &
+/usr/bin/python /home/pi/dev/alexa.py > /home/pi/logs/alexa.log &
 /usr/bin/python /home/pi/dev/dash.py > /home/pi/logs/dash.log &
 
