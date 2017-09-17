@@ -15,7 +15,7 @@ ask = Ask(app, '/')
 def intro():
     return statement("You can set modes tv, dim, bright or superbright")
 
-@ask.intent("TVMode")
+@ask.intent("LightMode")
 def TVMode( mode ):
     l = hue.Lights()
     l.connect()
@@ -24,28 +24,15 @@ def TVMode( mode ):
         l.setLights("tv")
     elif mode == "dim" or mode == "dinner" or mode =="mild" or mode == "relax":
         l.setLights("relax")
-    elif mode == "bright":
-        l.setLights("bright")
+    elif mode == "bright" or mode == "brand":
+        l.setLights("bright") 
     elif mode == "super bright":
         l.setLights("superbright")
     else:
-        return statement("unknown mode")
+        print "unknown mode: " + mode
+        return statement("unknown mode " + mode)
 
     return statement("%s Mode set" % (mode) )
-
-
-def waitForNetwork():
-    while True:
-	try:
-            print "checking internet.."
-            time.sleep(1)
-	    answ = urllib2.urlopen("http://www.google.com")
-	    if answ:
-                print "internet up"
-                break
-	except Exception,e : print e
-
-waitForNetwork()
 
 if __name__ == '__main__':
     app.run()
