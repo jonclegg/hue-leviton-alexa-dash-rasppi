@@ -1,5 +1,7 @@
 This is an experimental project to control my Hue and Leviton lights using a raspberry pi 3. 
 
+With this setup you can control your Hue and Leviton lights using an Alexa and an Amazon Dash button
+
 Features:
 * Control hue and Leviton dimmer with one Alexa command, currently 4 hard coded “scenes” are set.
 * Control hue and Levitons scene from dash button
@@ -62,7 +64,7 @@ LightMode {mode}
 
 6. Setup a ngrok basic account to have a static domain for the Alexa skill to reach your raspberry pi, set that as the https local for your Alexa skill
 
-
+7. Before running hue.py, push the button on your Hue bridge to enable the configure mode. To find out the mac address of your dash run dash.py to have it print the mac address. Put that mac addr into the config.py.
 
 
 
