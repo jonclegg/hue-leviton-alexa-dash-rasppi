@@ -15,8 +15,10 @@ class Lights:
     lightModes = {
             'tv': [0, 30, 0, 10],
             'relax': [60, 130, 150, 15],
-            'bright': [150, 200, 200, 20],
-            'superbright': [255, 255, 255, 30],
+            'normal': [150, 200, 200, 16],
+            'bright': [255, 255, 255, 30],
+            'makeup': [250, 200, 155, 16],
+            'off': [0, 0, 0, 0]
     }
     hueBridge = None
 

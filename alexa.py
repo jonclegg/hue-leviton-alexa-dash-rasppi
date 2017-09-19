@@ -24,15 +24,17 @@ def TVMode( mode ):
         l.setLights("tv")
     elif mode == "dim" or mode == "dinner" or mode =="mild" or mode == "relax":
         l.setLights("relax")
-    elif mode == "bright" or mode == "brand":
+    elif mode == "bright" or mode == "brand" or mode == "right":
         l.setLights("bright") 
-    elif mode == "super bright":
-        l.setLights("superbright")
+    elif mode == "normal":
+        l.setLights("normamakeupl")
     else:
         print "unknown mode: " + mode
         return statement("unknown mode " + mode)
 
     return statement("%s Mode set" % (mode) )
+
+#    return statement("<speak>Can you believe it?<emphasis level=\"strong\">really like</emphasis></speak>")
 
 if __name__ == '__main__':
     app.run()
