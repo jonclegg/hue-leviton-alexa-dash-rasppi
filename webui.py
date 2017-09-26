@@ -32,11 +32,11 @@ def release_control():
      <form method="POST" action="/">
         <div id="content"><p><input id="submit" name="tv" type="submit" value="TV"></p>
         <div id="content"><p><input id="submit" name="relax" type="submit" value="Relax"></p>
-        <div id="content"><p><input id="submit" name="normal" type="submit" value="normal"></p>
-        <div id="content"><p><input id="submit" name="bright" type="submit" value="bright"></p>
-        <div id="content"><p><input id="submit" name="makeup" type="submit" value="makeup"></p>
-        <div id="content"><p><input id="submit" name="off" type="submit" value="off"></p>
-        <div id="content"><p><input id="submit" name="bedroom64" type="submit" value="bedroom 64"></p>
+        <div id="content"><p><input id="submit" name="normal" type="submit" value="Normal"></p>
+        <div id="content"><p><input id="submit" name="bright" type="submit" value="Bright"></p>
+        <div id="content"><p><input id="submit" name="makeup" type="submit" value="Makeup"></p>
+        <div id="content"><p><input id="submit" name="off" type="submit" value="Off"></p>
+        <div id="content"><p><input id="submit" name="bedroom64" type="submit" value="Bedroom 64"></p>
      </form></div>
      <style>
          body {

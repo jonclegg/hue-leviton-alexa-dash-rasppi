@@ -27,7 +27,11 @@ def TVMode( mode ):
     elif mode == "bright" or mode == "brand" or mode == "right":
         l.setLights("bright") 
     elif mode == "normal":
-        l.setLights("normamakeupl")
+        l.setLights("normal")
+    elif mode == "off":
+        l.setLights("off")
+    elif mode == "reading" or mode == "most":
+        l.setLights("reading")
     else:
         print "unknown mode: " + mode
         return statement("unknown mode " + mode)

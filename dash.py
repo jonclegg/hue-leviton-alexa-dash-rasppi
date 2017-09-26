@@ -8,29 +8,62 @@ def setLights( mode ):
     l = hue.Lights()
     l.connect()
     l.setLights( mode ) 
-            
+        
+lastTime = 0
+lastMAC = ""
+
 def arp_display(pkt):
+    global lastTime
+    global lastMAC
 
     if pkt.haslayer(ARP):
-        if pkt[ARP].hwsrc == config.gladMAC:
-            print "Glad pressed, setting makeup"
-            setLights('makeup')
-        if pkt[ARP].hwsrc == config.angleSoftMAC:
-            print "anglesoft pressed, setting tv"
-            setLights('tv')
-        if pkt[ARP].hwsrc == config.happyBellyMAC:
-            print "happy belly pressed, setting off"
-            setLights('off')
-        if pkt[ARP].hwsrc == config.tideMAC:
-            print "tide pressed, making bedroom COLD"
+        curMAC = pkt[ARP].hwsrc
+        if not curMAC in config.dashMACs:
+            return
+
+        buttonName = config.dashMACs[curMAC]
+        print "found: " + curMAC
+        print "name: " + buttonName
+
+        diff = time.time() - lastTime
+        if pkt[ARP].hwsrc == lastMAC and diff < 5:
+           print "i've seen this before delta: %d" % ( diff )
+           print "ignoring 2nd arp"
+           return
+
+        lastTime = time.time()
+        lastMAC = pkt[ARP].hwsrc
+        print "accepting " + lastMAC
+
+        if buttonName == 'tideMAC':
             urllib2.urlopen( config.iftttBase % ( "bedroom_64" ) ).read()
+        if buttonName == 'tropicanaMAC':
+            setLights('makeup')
+            urllib2.urlopen( config.iftttBase % ( "hallway_72" ) ).read()
+        if buttonName == 'angleSoftMAC':
+            setLights('tv')
+        if buttonName == 'happyBellyMAC':
+            setLights('off')
+        if buttonName == 'cascadeMAC':
+            setLights('normal')
+        if buttonName == 'natureValleyMAC':
+            setLights('reading')
+        if buttonName == 'ceraVeMAC':
+            setLights('normal')
+        if buttonName == 'ethicalBeanMAC':
+            setLights('relax')
+        if buttonName == 'adamiaMAC':
+            urllib2.urlopen( config.iftttBase % ( "hallway_72" ) ).read()
+        if buttonName == 'ampMAC':
+            os.system( "/home/pi/dev/tv_dimandsleep.sh &" )
 
     # older dash buttons use llc instead arp
+    """
     if pkt.haslayer(Dot3):
         print "found: " + pkt[Dot3].src
         if pkt[Dot3].src == config.bountyMAC:
-            print "Bounty pressed, setting relax"
             setLights('relax')
+            """
 
 print "listening for dash buttons.."
 print sniff(prn=arp_display, filter="arp or llc", store=0, count=0)

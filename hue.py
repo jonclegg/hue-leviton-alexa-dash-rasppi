@@ -9,16 +9,18 @@ import sys
 import config
 
 class Lights:
-    kitchenLights = [1, 2, 4, 7]
-    livingRoomLights = [ 3, 5, 6, 8 ]
+    kitchenLights = [1, 2, 4, 7, 13]
+    livingRoomLights = [ 3, 5, 6, 8, 12, 13 ]
     diningRoomLights = [9, 10]
+    hallwayRoomLights = [11]
     lightModes = {
-            'tv': [0, 30, 0, 10],
-            'relax': [60, 130, 150, 15],
-            'normal': [150, 200, 200, 16],
-            'bright': [255, 255, 255, 30],
-            'makeup': [250, 200, 155, 16],
-            'off': [0, 0, 0, 0]
+            'tv': [0, 30, 0, 0, 0],
+            'relax': [60, 130, 150, 30, 15],
+            'normal': [150, 200, 200, 50, 16],
+            'reading': [150, 200, 200, 50, 25],
+            'bright': [255, 255, 255, 200, 30],
+            'makeup': [255, 155, 155, 50, 16],
+            'off': [0, 0, 0, 0, 0]
     }
     hueBridge = None
 
@@ -38,14 +40,25 @@ class Lights:
                 self.hueBridge.set_light( light, 'on', True)
                 self.hueBridge.set_light( light, 'bri', brightness)
 
-    def setLights( self, mode ):
-        self.setTable( "table_%d" % ( self.lightModes[mode][3]) )
+    def setLights_int( self, mode ):
+        self.setTable( "table_%d" % ( self.lightModes[mode][4]) )
         self.setSection( self.livingRoomLights, self.lightModes[mode][0] )
         self.setSection( self.kitchenLights, self.lightModes[mode][1] )
         self.setSection( self.diningRoomLights, self.lightModes[mode][2] )
+        self.setSection( self.hallwayRoomLights, self.lightModes[mode][3] )
+        
+    def setLights( self, mode ):
+        print "setting lights to: " + mode
+        for i in range(1,2):
+            self.setLights_int( mode )
+            time.sleep(1)
+                    
+          
+
 
 
 def main():
+
     if len( sys.argv ) != 2:
         print "usage: hue [mode]"
         return
