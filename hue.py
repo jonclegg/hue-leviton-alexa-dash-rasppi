@@ -32,6 +32,9 @@ class Lights:
         self.hueBridge.connect()
         self.hueBridge.get_api()
 
+    def setLight( self, light, brightness ):
+        self.hueBridge.set_light( light, 'bri', brightness)
+
     def setSection( self, section, brightness ):
         for light in section:
             if brightness == 0:
