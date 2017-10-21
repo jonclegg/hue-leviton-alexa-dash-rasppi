@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import time
+import sys
 import urllib2
 from flask import Flask
 from flask_ask import Ask, statement
@@ -11,35 +12,19 @@ import hue
 app = Flask(__name__)
 ask = Ask(app, '/')
 
+aport = int(sys.argv[1])
+amode = sys.argv[2]
+
 @ask.launch
 def intro():
-    return statement("You can set modes tv, dim, bright or superbright")
-
-@ask.intent("LightMode")
-def TVMode( mode ):
+    global amode
+    print "setting lights to " + amode
     l = hue.Lights()
     l.connect()
-    print "mode: %s" % (mode)
-    if mode == "TV" or mode == "V":
-        l.setLights("tv")
-    elif mode == "dim" or mode == "dinner" or mode =="mild" or mode == "relax":
-        l.setLights("relax")
-    elif mode == "bright" or mode == "brand" or mode == "right":
-        l.setLights("bright") 
-    elif mode == "normal":
-        l.setLights("normal")
-    elif mode == "off":
-        l.setLights("off")
-    elif mode == "reading" or mode == "most":
-        l.setLights("reading")
-    else:
-        print "unknown mode: " + mode
-        return statement("unknown mode " + mode)
-
-    return statement("%s Mode set" % (mode) )
-
-#    return statement("<speak>Can you believe it?<emphasis level=\"strong\">really like</emphasis></speak>")
+    l.setLights(amode)
+    return statement("%s mode set" % amode)
 
 if __name__ == '__main__':
-    app.run()
+    print "running on port %d mode %s" % ( aport, amode)
+    app.run( host='0.0.0.0', port=aport)
 

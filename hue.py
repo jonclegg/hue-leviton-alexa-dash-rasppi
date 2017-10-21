@@ -10,17 +10,17 @@ import config
 
 class Lights:
     kitchenLights = [1, 2, 4, 7, 13]
-    livingRoomLights = [ 3, 5, 6, 8, 12, 13 ]
+    livingRoomLights = [ 3, 5, 6, 8, 14 ]
     diningRoomLights = [9, 10]
     hallwayRoomLights = [11]
     lightModes = {
-            'tv': [0, 30, 0, 0, 0],
-            'relax': [60, 130, 150, 30, 15],
-            'normal': [150, 200, 200, 50, 16],
-            'reading': [150, 200, 200, 50, 25],
-            'bright': [255, 255, 255, 200, 30],
-            'makeup': [255, 155, 155, 50, 16],
-            'off': [0, 0, 0, 0, 0]
+            'tv':        [  0,  30,   0,  0,  0],
+            'relax':     [ 60, 130, 150, 30, 15],
+            'normal':    [150, 200, 200, 50, 16],
+            'reading':   [150, 200, 200, 50, 25],
+            'bright':    [255, 255, 255, 200,30],
+            'makeup':    [255, 155, 155, 50, 16],
+            'off':       [  0,   0,   0,  0,  0]
     }
     hueBridge = None
 
@@ -35,6 +35,7 @@ class Lights:
     def setSection( self, section, brightness ):
         for light in section:
             if brightness == 0:
+                print "setting %d off" % ( light )
                 self.hueBridge.set_light( light, 'on', False)
             else:
                 self.hueBridge.set_light( light, 'on', True)
@@ -49,13 +50,11 @@ class Lights:
         
     def setLights( self, mode ):
         print "setting lights to: " + mode
-        for i in range(1,2):
+        for i in range(1,3):
             self.setLights_int( mode )
             time.sleep(1)
-                    
-          
-
-
+        if mode == 'makeup':
+            urllib2.urlopen( config.iftttBase % ( "hallway_72" ) ).read()
 
 def main():
 

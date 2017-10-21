@@ -39,23 +39,25 @@ def arp_display(pkt):
             urllib2.urlopen( config.iftttBase % ( "bedroom_64" ) ).read()
         if buttonName == 'tropicanaMAC':
             setLights('makeup')
-            urllib2.urlopen( config.iftttBase % ( "hallway_72" ) ).read()
         if buttonName == 'angleSoftMAC':
             setLights('tv')
         if buttonName == 'happyBellyMAC':
             setLights('off')
         if buttonName == 'cascadeMAC':
-            setLights('normal')
+            setLights('')
         if buttonName == 'natureValleyMAC':
             setLights('reading')
-        if buttonName == 'ceraVeMAC':
-            setLights('normal')
-        if buttonName == 'ethicalBeanMAC':
+        if buttonName == 'milanoMAC':
+            #setLights('normal')
             setLights('relax')
+        if buttonName == 'ethicalBeanMAC':
+            #setLights('relax')
+            setLights('normal')
         if buttonName == 'adamiaMAC':
             urllib2.urlopen( config.iftttBase % ( "hallway_72" ) ).read()
         if buttonName == 'ampMAC':
-            os.system( "/home/pi/dev/tv_dimandsleep.sh &" )
+            print "setting tv mode"
+            os.system( "/home/pi/dev/tv_dim_and_sleep.sh &" )
 
     # older dash buttons use llc instead arp
     """

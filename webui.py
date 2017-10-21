@@ -18,14 +18,16 @@ def release_control():
          l.setLights("relax")
     if (request.POST.get("normal")):
          l.setLights("normal")
-    if (request.POST.get("bright")):
-         l.setLights("bright")
-    if (request.POST.get("makeup")):
-         l.setLights("makeup")
     if (request.POST.get("off")):
          l.setLights("off")
     if (request.POST.get("bedroom64")):
          urllib2.urlopen( config.iftttBase % ( "bedroom_64" ) ).read()
+    if (request.POST.get("hallway72")):
+         urllib2.urlopen( config.iftttBase % ( "hallway_72" ) ).read()
+    if (request.POST.get("hallway74")):
+         urllib2.urlopen( config.iftttBase % ( "hallway_74" ) ).read()
+    if (request.POST.get("hallway76")):
+         urllib2.urlopen( config.iftttBase % ( "hallway_76" ) ).read()
 
     return """
      <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,10 +35,11 @@ def release_control():
         <div id="content"><p><input id="submit" name="tv" type="submit" value="TV"></p>
         <div id="content"><p><input id="submit" name="relax" type="submit" value="Relax"></p>
         <div id="content"><p><input id="submit" name="normal" type="submit" value="Normal"></p>
-        <div id="content"><p><input id="submit" name="bright" type="submit" value="Bright"></p>
-        <div id="content"><p><input id="submit" name="makeup" type="submit" value="Makeup"></p>
         <div id="content"><p><input id="submit" name="off" type="submit" value="Off"></p>
         <div id="content"><p><input id="submit" name="bedroom64" type="submit" value="Bedroom 64"></p>
+        <div id="content"><p><input id="submit" name="hallway72" type="submit" value="Hallway 72"></p>
+        <div id="content"><p><input id="submit" name="hallway74" type="submit" value="Hallway 74"></p>
+        <div id="content"><p><input id="submit" name="hallway76" type="submit" value="Hallway 76"></p>
      </form></div>
      <style>
          body {
