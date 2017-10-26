@@ -6,7 +6,8 @@
 #/usr/bin/python /home/pi/dev/alexa.py 6000 relax &
 #/usr/bin/python /home/pi/dev/alexa.py 6001 makeup &
 #/usr/bin/python /home/pi/dev/alexa.py 6002 normal &
-/usr/bin/python /home/pi/dev/dash.py > /home/pi/logs/dash.log &
-/usr/bin/python /home/pi/dev/webui.py > /home/pi/logs/webui.log &
+/usr/bin/python /home/pi/dev/dash.py &> /home/pi/logs/dash.log &
+/usr/bin/python /home/pi/dev/webui.py &> /home/pi/logs/webui.log &
+/usr/bin/python /home/pi/dev/lockdoor.py &> /home/pi/logs/lockdoor.log &
 /bin/sh /home/pi/dev/start_ngrok.sh &
 

@@ -29,8 +29,11 @@ class LightFade:
        return True
 
    def setupNewRange( self ):
-       self.step = randint( 20, 50  )
-       self.end = randint( 1, 250 )
+       self.step = randint( 5, 20  )
+       if self.currentVal > 150:
+           self.end = randint( 1, 40 )
+       else: 
+           self.end = randint( 200, 250 )
 
        if self.currentVal > self.end:
            self.step = -self.step
@@ -50,7 +53,7 @@ for l in livingRoomLights:
 while True:
     for l in lightFades:
       l.tick()
-    sleep(0.05)
+    sleep(0.10)
 
 
 
